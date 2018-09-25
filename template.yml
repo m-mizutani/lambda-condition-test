@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'Test'
+Parameters:
+  MyParam:
+    Type: String
+
+Conditions:
+  NoMyParam:
+    Fn::Equals: [ { Ref: MyParam }, "x" ]
+
+Resources:
+  IfNoParam:
+    Type: AWS::Serverless::Function
+    Condition: NoMyParam
+    Properties:
+      CodeUri: build
+      Handler: myfunc
+      Runtime: go1.x
+      Timeout: 30
+      MemorySize: 128

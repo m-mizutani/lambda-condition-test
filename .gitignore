@@ -1,0 +1,4 @@
+vendor
+build/
+param.cfg
+sam.yml
